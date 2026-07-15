@@ -1,39 +1,46 @@
 # portfolio_app.py
-# Hyper-modern, Apple-inspired, ultra-premium Streamlit portfolio.
-# Design: Cyber-Luxury & Spatial UI with Bento Box layout.
+# Ultra-premium, production-ready Streamlit portfolio for Muhammad Najeeb Brohi.
+# Design: Midnight Luxury & Spatial UI with glassmorphism, bento-grid, and premium animations.
 
 import streamlit as st
 from datetime import datetime
 
 # -----------------------------------------------------------------------------
-# PAGE CONFIG
+# PAGE CONFIGURATION
 # -----------------------------------------------------------------------------
 st.set_page_config(
-    page_title="Cyber-Luxury Portfolio",
+    page_title="Muhammad Najeeb Brohi | Portfolio",
     page_icon="✦",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
 # -----------------------------------------------------------------------------
-# CUSTOM CSS – FULL OVERRIDE
+# CUSTOM CSS – Complete Override
 # -----------------------------------------------------------------------------
 custom_css = """
 /* ----- RESET & FONTS ----- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #0a0a0a;
+    background-color: #0a0a0a; /* Absolute black */
     color: #f0f0f0;
     line-height: 1.6;
     overflow-x: hidden;
 }
 
-/* ----- HIDE STREAMLIT DEFAULTS ----- */
+/* ----- HIDE DEFAULT STREAMLIT ELEMENTS ----- */
 #MainMenu { visibility: hidden; }
 footer { visibility: hidden; }
 header { visibility: hidden; }
@@ -44,44 +51,13 @@ header { visibility: hidden; }
 /* ----- CUSTOM SCROLLBAR ----- */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #1a1a1a; }
-::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #6c5ce7, #00cec9); border-radius: 10px; }
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #6c5ce7, #00cec9);
+    border-radius: 10px;
+}
 ::-webkit-scrollbar-thumb:hover { background: #6c5ce7; }
 
-/* ----- AMBIENT GLOW ORB ANIMATION ----- */
-.orb {
-    position: fixed;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(108, 92, 231, 0.3), rgba(0, 206, 201, 0.1));
-    filter: blur(80px);
-    top: -100px;
-    right: -100px;
-    z-index: -1;
-    animation: orbFloat 12s ease-in-out infinite alternate;
-}
-.orb2 {
-    position: fixed;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(253, 121, 168, 0.2), rgba(0, 206, 201, 0.05));
-    filter: blur(60px);
-    bottom: -50px;
-    left: -50px;
-    z-index: -1;
-    animation: orbFloat2 15s ease-in-out infinite alternate;
-}
-@keyframes orbFloat {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(-100px, 100px) scale(1.2); }
-}
-@keyframes orbFloat2 {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(80px, -80px) scale(1.3); }
-}
-
-/* ----- FLOATING ISLAND HEADER ----- */
+/* ----- FLOATING GLASS NAVBAR ----- */
 .navbar {
     position: fixed;
     top: 20px;
@@ -173,42 +149,49 @@ header { visibility: hidden; }
     min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    padding: 6rem 2rem 2rem;
+    padding: 6rem 4rem 2rem;
     position: relative;
     z-index: 1;
 }
 
-.hero h1 {
+.hero-left {
+    flex: 1;
+    padding-right: 2rem;
+}
+
+.hero-left h1 {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(3.5rem, 12vw, 7rem);
+    font-size: clamp(3rem, 8vw, 5.5rem);
     font-weight: 700;
     line-height: 1.1;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
     background: linear-gradient(135deg, #ffffff 30%, #6c5ce7 70%, #00cec9 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
-.hero .subtitle {
+.hero-left .subtitle {
     font-size: 1.3rem;
     color: rgba(255,255,255,0.6);
-    max-width: 650px;
-    margin: 1rem auto 2rem;
+    margin: 1rem 0 1.5rem;
+    max-width: 600px;
 }
 
-.hero .typewriter {
+.typewriter-container {
     display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #00cec9;
+    margin-bottom: 1.5rem;
     border-right: 3px solid #6c5ce7;
-    animation: typing 2.5s steps(30) 1s forwards, blink 0.75s step-end infinite;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 3s steps(30) 1s forwards, blink 0.75s step-end infinite;
     width: 0;
     animation-fill-mode: forwards;
 }
+
 @keyframes typing {
     from { width: 0 }
     to { width: 100% }
@@ -255,15 +238,64 @@ header { visibility: hidden; }
     box-shadow: 0 0 40px rgba(108, 92, 231, 0.4);
 }
 
-/* ----- BENTO BOX CORE (Skills & About) ----- */
+.hero-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* 3D Glowing Sphere (AI Nodes) */
+.sphere {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #6c5ce7, #00cec9);
+    filter: blur(40px);
+    opacity: 0.6;
+    animation: float 6s ease-in-out infinite alternate;
+    position: relative;
+}
+.sphere::after {
+    content: '';
+    position: absolute;
+    top: -20px; left: -20px; right: -20px; bottom: -20px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%, rgba(108,92,231,0.2), transparent 70%);
+    animation: pulseGlow 4s ease-in-out infinite alternate;
+}
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(20px, -20px) scale(1.1); }
+}
+@keyframes pulseGlow {
+    0% { opacity: 0.3; transform: scale(1); }
+    100% { opacity: 0.8; transform: scale(1.3); }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 6rem 1.5rem 2rem;
+    }
+    .hero-left { padding-right: 0; }
+    .hero-left .subtitle { margin-left: auto; margin-right: auto; }
+    .typewriter-container { white-space: normal; border-right: none; animation: none; width: auto; }
+    .sphere { width: 250px; height: 250px; margin-top: 2rem; }
+}
+
+/* ----- BENTO GRID (Skills) ----- */
 .bento-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
 }
+
 .bento-item {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(10px);
@@ -274,11 +306,13 @@ header { visibility: hidden; }
     position: relative;
     overflow: hidden;
 }
+
 .bento-item:hover {
     transform: translateY(-4px);
     border-color: rgba(108, 92, 231, 0.4);
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
+
 .bento-item::after {
     content: '';
     position: absolute;
@@ -294,29 +328,119 @@ header { visibility: hidden; }
 .bento-item .icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
 .bento-item h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; margin-bottom: 0.4rem; }
 .bento-item p { color: rgba(255,255,255,0.6); font-size: 0.95rem; }
-
-/* Sizing for bento */
-.bento-item.span-2 { grid-column: span 2; }
-.bento-item.span-3 { grid-column: span 3; }
-.bento-item.span-row-2 { grid-row: span 2; }
+.bento-item .badge {
+    display: inline-block;
+    background: rgba(108,92,231,0.2);
+    color: #6c5ce7;
+    padding: 0.2rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
 
 @media (max-width: 900px) {
     .bento-grid { grid-template-columns: repeat(2, 1fr); }
-    .bento-item.span-2 { grid-column: span 2; }
-    .bento-item.span-3 { grid-column: span 2; }
 }
 @media (max-width: 480px) {
     .bento-grid { grid-template-columns: 1fr; }
-    .bento-item.span-2, .bento-item.span-3 { grid-column: 1; }
 }
 
-/* ----- PARALLAX EXPERIENCE TIMELINE ----- */
+/* ----- PROJECT CARDS ----- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.project-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    border-color: rgba(108, 92, 231, 0.3);
+}
+
+.project-card .card-header {
+    padding: 1.5rem 1.5rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.project-card .card-header h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+.project-card .card-header .tag {
+    background: rgba(0,206,201,0.2);
+    color: #00cec9;
+    padding: 0.2rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.project-card .card-body {
+    padding: 0 1.5rem 1.5rem;
+    flex: 1;
+}
+
+.project-card .card-body .subtitle {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-card .card-body .tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.5rem 0;
+}
+
+.project-card .card-body .tech span {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.7);
+    padding: 0.2rem 0.6rem;
+    border-radius: 50px;
+    font-size: 0.7rem;
+}
+
+.project-card .card-body .desc {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 600px) {
+    .projects-grid { grid-template-columns: 1fr; }
+}
+
+/* ----- TIMELINE ----- */
 .timeline-section {
     max-width: 900px;
     margin: 0 auto;
     padding: 0 2rem;
     position: relative;
 }
+
 .timeline-line {
     position: absolute;
     left: 50%;
@@ -327,6 +451,7 @@ header { visibility: hidden; }
     transform: translateX(-50%);
     box-shadow: 0 0 20px rgba(108, 92, 231, 0.3);
 }
+
 .timeline-item {
     display: flex;
     justify-content: flex-end;
@@ -334,18 +459,21 @@ header { visibility: hidden; }
     position: relative;
     width: 50%;
 }
+
 .timeline-item:nth-child(odd) {
     justify-content: flex-start;
     padding-left: 3rem;
     padding-right: 0;
     margin-left: 0;
 }
+
 .timeline-item:nth-child(even) {
     justify-content: flex-end;
     padding-right: 3rem;
     padding-left: 0;
     margin-left: 50%;
 }
+
 .timeline-item .dot {
     position: absolute;
     width: 16px;
@@ -359,6 +487,7 @@ header { visibility: hidden; }
     z-index: 1;
     box-shadow: 0 0 20px rgba(108, 92, 231, 0.6);
 }
+
 .timeline-item .card {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(10px);
@@ -366,19 +495,22 @@ header { visibility: hidden; }
     border-radius: 20px;
     padding: 1.5rem;
     max-width: 350px;
-    transition: transform 0.3s, opacity 0.5s, box-shadow 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.6s forwards;
 }
+
 .timeline-item .card:hover {
     transform: translateY(-5px) scale(1.02);
     border-color: rgba(0, 206, 201, 0.3);
     box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
+
 @keyframes fadeInUp {
     to { opacity: 1; transform: translateY(0); }
 }
+
 .timeline-item:nth-child(1) .card { animation-delay: 0.1s; }
 .timeline-item:nth-child(2) .card { animation-delay: 0.2s; }
 .timeline-item:nth-child(3) .card { animation-delay: 0.3s; }
@@ -393,175 +525,63 @@ header { visibility: hidden; }
     .timeline-item .dot { left: 20px !important; }
 }
 
-/* ----- CINEMA-GRADE PROJECT SHOWCASE ----- */
-.projects-grid {
+/* ----- CONTACT FOOTER ----- */
+.contact-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem 3rem;
+}
+
+.contact-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-.project-card {
-    position: relative;
-    border-radius: 24px;
-    overflow: hidden;
-    background: #1a1a1a;
-    cursor: pointer;
-    aspect-ratio: 16 / 10;
-    transition: transform 0.4s ease, box-shadow 0.4s;
-}
-.project-card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.7);
-}
-.project-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-}
-.project-card:hover img {
-    transform: scale(1.08);
-}
-.project-card .overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 2rem 1.5rem;
-    background: linear-gradient(to top, rgba(10,10,10,0.9), transparent);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-}
-.project-card:hover .overlay {
-    opacity: 1;
-}
-.project-card .overlay h3 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.4rem;
-    margin-bottom: 0.3rem;
-}
-.project-card .overlay p {
-    color: rgba(255,255,255,0.7);
-    font-size: 0.9rem;
-}
-.project-card .overlay .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin: 0.5rem 0;
-}
-.project-card .overlay .tags span {
-    background: rgba(108,92,231,0.3);
-    color: #fff;
-    padding: 0.2rem 0.8rem;
-    border-radius: 50px;
-    font-size: 0.7rem;
-    font-weight: 500;
-}
-.project-card .overlay .links {
-    display: flex;
-    gap: 1rem;
-    margin-top: 0.8rem;
-}
-.project-card .overlay .links a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 0.9rem;
-    background: rgba(255,255,255,0.1);
-    padding: 0.3rem 1rem;
-    border-radius: 50px;
-    transition: background 0.3s;
-}
-.project-card .overlay .links a:hover {
-    background: #6c5ce7;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
 }
 
-@media (max-width: 600px) {
-    .projects-grid { grid-template-columns: 1fr; }
-    .project-card { aspect-ratio: auto; height: 250px; }
-}
-
-/* ----- MAGNETIC FOOTER & CONTACT ----- */
-.footer-section {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 4rem 2rem 2rem;
+.contact-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 1.5rem;
     text-align: center;
-}
-.footer-section h2 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-}
-.footer-section p {
-    color: rgba(255,255,255,0.6);
-    margin-bottom: 2rem;
-}
-.footer-section .email-form {
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    text-decoration: none;
+    color: #f0f0f0;
     display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
 }
-.footer-section .email-form input {
-    flex: 1;
-    min-width: 200px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 50px;
-    padding: 0.8rem 1.5rem;
-    color: #fff;
-    font-size: 1rem;
-    outline: none;
-    transition: border-color 0.3s, box-shadow 0.3s;
+
+.contact-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(108, 92, 231, 0.4);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
-.footer-section .email-form input:focus {
-    border-color: #6c5ce7;
-    box-shadow: 0 0 0 3px rgba(108,92,231,0.2);
+
+.contact-card .icon {
+    font-size: 2rem;
 }
-.footer-section .email-form button {
-    background: linear-gradient(135deg, #6c5ce7, #00cec9);
-    border: none;
-    border-radius: 50px;
-    padding: 0.8rem 2rem;
-    color: #0a0a0a;
+.contact-card .label {
     font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 15px rgba(108,92,231,0.3);
+    font-size: 1rem;
 }
-.footer-section .email-form button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 30px rgba(108,92,231,0.4);
-}
-.footer-section .social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 2.5rem;
-}
-.footer-section .social-icons a {
+.contact-card .value {
     color: rgba(255,255,255,0.6);
-    font-size: 1.8rem;
-    transition: color 0.3s, transform 0.3s;
-    display: inline-block;
+    font-size: 0.9rem;
 }
-.footer-section .social-icons a:hover {
-    color: #6c5ce7;
-    transform: translateY(-3px) scale(1.1);
-}
+
 .footer-bottom {
     text-align: center;
     padding: 1.5rem 0;
     border-top: 1px solid rgba(255,255,255,0.05);
     color: rgba(255,255,255,0.3);
     font-size: 0.8rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
-/* ----- UTILITY ----- */
+/* ----- UTILITIES ----- */
 .section-title {
     font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(2.5rem, 6vw, 4rem);
@@ -572,198 +592,178 @@ header { visibility: hidden; }
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
+
 .container { max-width: 1200px; margin: 0 auto; }
 .section-padding { padding: 5rem 0; }
-
-/* ----- RESPONSIVE FINAL TOUCHES ----- */
-@media (max-width: 480px) {
-    .hero h1 { font-size: 2.5rem; }
-    .hero .typewriter { white-space: normal; border-right: none; animation: none; width: auto; }
-    .navbar { width: 95%; padding: 0.5rem 1rem; gap: 0.5rem; }
-}
 """
 
+# Inject CSS
 st.markdown(f"<style>{custom_css}</style>", unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
-# AMBIENT ORBS (Background)
-# -----------------------------------------------------------------------------
-st.markdown("""
-<div class="orb"></div>
-<div class="orb2"></div>
-""", unsafe_allow_html=True)
-
-# -----------------------------------------------------------------------------
-# NAVBAR (Floating Island)
+# FLOATING NAVBAR (HTML)
 # -----------------------------------------------------------------------------
 navbar_html = """
 <nav class="navbar">
-    <span class="logo">✦ CYBER</span>
-    <a href="#hero">Home</a>
-    <a href="#bento">About</a>
-    <a href="#timeline">Experience</a>
-    <a href="#projects">Work</a>
-    <a href="#footer">Contact</a>
-    <a href="#hero" class="cta-btn">Resume</a>
+    <span class="logo">✦ NB</span>
+    <a href="#home">Home</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <a href="#home" class="cta-btn">Resume</a>
 </nav>
 """
 st.markdown(navbar_html, unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
-# HERO SECTION
+# HERO SECTION (Using columns)
 # -----------------------------------------------------------------------------
-hero_html = """
-<section id="hero" class="hero">
-    <h1>
-        <span class="typewriter">Designing the Future</span>
-    </h1>
-    <p class="subtitle">
-        I'm a Full-Stack Architect & UI/UX Designer — crafting digital experiences with
-        spatial aesthetics and luxury minimalism.
-    </p>
-    <a href="#projects" class="resume-btn">Explore My Work →</a>
-</section>
-"""
-st.markdown(hero_html, unsafe_allow_html=True)
+# We'll use st.columns to create left/right layout, but inject custom HTML inside.
+# Left column: text; Right column: 3D sphere.
+col1, col2 = st.columns([1, 1], gap="large")
+
+with col1:
+    st.markdown("""
+    <div class="hero-left">
+        <h1>Muhammad Najeeb Brohi</h1>
+        <div class="typewriter-container">Python Developer & Automation Specialist</div>
+        <p class="subtitle">
+            Certified Python Programmer with a passion for core logic, workflow automation,
+            and generative AI. Building intelligent systems that simplify complexity.
+        </p>
+        <a href="#" class="resume-btn">Download Resume →</a>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col2:
+    st.markdown("""
+    <div class="hero-right">
+        <div class="sphere"></div>
+    </div>
+    """, unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
-# BENTO BOX (Skills & About)
-# We'll use pure HTML grid; no st.columns because we want full control.
+# SKILLS (BENTO GRID) SECTION
 # -----------------------------------------------------------------------------
-bento_html = """
-<section id="bento" class="section-padding">
+st.markdown("""
+<section id="skills" class="section-padding">
     <div class="container">
-        <h2 class="section-title">About & Skills</h2>
+        <h2 class="section-title">Core Expertise</h2>
         <div class="bento-grid">
-            <div class="bento-item span-2">
-                <div class="icon">🧠</div>
+            <div class="bento-item">
+                <div class="icon">🐍</div>
+                <h3>Python & Logic</h3>
+                <p>Gexton Certified Python Developer with strong command over core Python, CLI tools, and workflow automations.</p>
+                <span class="badge">Certified</span>
+            </div>
+            <div class="bento-item">
+                <div class="icon">🤖</div>
                 <h3>AI & Machine Learning</h3>
-                <p>Building intelligent systems with TensorFlow, PyTorch, and custom models.</p>
+                <p>Foundations in ML, Deep Learning, LangChain, OpenAI APIs, and FAISS vector search. Building intelligent applications.</p>
+                <span class="badge">In Progress</span>
             </div>
             <div class="bento-item">
-                <div class="icon">⚡</div>
-                <h3>Full-Stack</h3>
-                <p>Python, React, Node.js, and cloud-native architectures.</p>
-            </div>
-            <div class="bento-item span-row-2">
-                <div class="icon">🎨</div>
-                <h3>UI/UX Design</h3>
-                <p>Human-centered design, prototyping, and design systems.</p>
-            </div>
-            <div class="bento-item">
-                <div class="icon">🚀</div>
-                <h3>DevOps</h3>
-                <p>Docker, Kubernetes, CI/CD pipelines.</p>
-            </div>
-            <div class="bento-item span-2">
-                <div class="icon">📊</div>
-                <h3>Data Analytics</h3>
-                <p>Big data processing, visualization, and insights.</p>
-            </div>
-            <div class="bento-item">
-                <div class="icon">🔒</div>
-                <h3>Cybersecurity</h3>
-                <p>Secure coding, penetration testing, and compliance.</p>
+                <div class="icon">🛠️</div>
+                <h3>Dev Tools & Databases</h3>
+                <p>SQLite, Git/GitHub, Streamlit, REST APIs, and modern development workflows.</p>
+                <span class="badge">Proficient</span>
             </div>
         </div>
     </div>
 </section>
-"""
-st.markdown(bento_html, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
-# PARALLAX EXPERIENCE TIMELINE
+# EXPERIENCE & ACADEMIC TIMELINE
 # -----------------------------------------------------------------------------
-timeline_html = """
-<section id="timeline" class="section-padding">
+st.markdown("""
+<section id="experience" class="section-padding">
     <div class="container">
-        <h2 class="section-title">Experience</h2>
+        <h2 class="section-title">Journey & Education</h2>
         <div class="timeline-section">
             <div class="timeline-line"></div>
             <div class="timeline-item">
                 <div class="dot"></div>
                 <div class="card">
-                    <div class="year">2023 – Present</div>
-                    <h4>Lead Architect</h4>
-                    <p>TechCorp Inc. – Leading a team of 10, designing microservices and cloud infrastructure.</p>
+                    <div class="year">2026 – Present</div>
+                    <h4>Specialization in Generative AI, ML & Automation</h4>
+                    <p>Studying foundational ML/DL algorithms, neural networks, and building intelligent automation workflows using LLMs.</p>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="dot"></div>
                 <div class="card">
-                    <div class="year">2020 – 2023</div>
-                    <h4>Senior Developer</h4>
-                    <p>Innovate Solutions – Full-stack development for fintech platforms.</p>
+                    <div class="year">2025 – Early 2026</div>
+                    <h4>Professional Certification in Python Programming</h4>
+                    <p>Intensive hands-on training at Gexton Institute of Technology covering Python core, data structures, and advanced problem-solving.</p>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="dot"></div>
                 <div class="card">
-                    <div class="year">2018 – 2020</div>
-                    <h4>UI/UX Designer</h4>
-                    <p>Design Studio – Crafted award-winning interfaces for global clients.</p>
+                    <div class="year">2025</div>
+                    <h4>Intermediate (Pre-Medical)</h4>
+                    <p>Govt. Boys Higher Secondary School Garelo, Larkana. Completed 1st year.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
-"""
-st.markdown(timeline_html, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
-# PROJECT SHOWCASE
+# PROJECTS SHOWCASE
 # -----------------------------------------------------------------------------
 projects_html = """
 <section id="projects" class="section-padding">
     <div class="container">
-        <h2 class="section-title">Featured Work</h2>
+        <h2 class="section-title">Featured Projects</h2>
         <div class="projects-grid">
             <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop" alt="Project 1">
-                <div class="overlay">
-                    <h3>AI Dashboard</h3>
-                    <p>Real-time analytics with predictive insights.</p>
-                    <div class="tags">
-                        <span>React</span>
+                <div class="card-header">
+                    <h3>Lumina AI</h3>
+                    <span class="tag">Generative AI</span>
+                </div>
+                <div class="card-body">
+                    <div class="subtitle">Streamlit + Glassmorphic AI Platform</div>
+                    <div class="tech">
+                        <span>LangChain</span>
+                        <span>OpenAI</span>
+                        <span>FAISS</span>
+                        <span>SQLite</span>
+                    </div>
+                    <div class="desc">Advanced Retrieval-Augmented Generation (RAG) platform with seamless vector search and conversational memory.</div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="card-header">
+                    <h3>AI-Powered AMS</h3>
+                    <span class="tag">Advanced Systems</span>
+                </div>
+                <div class="card-body">
+                    <div class="subtitle">Futuristic School Analytics & Portal</div>
+                    <div class="tech">
+                        <span>Streamlit</span>
+                        <span>SQLite</span>
+                        <span>ML Classifiers</span>
+                    </div>
+                    <div class="desc">Attendance Management with AI Mood Check-In, Predictive Risk Assessment, Performance Advisor, and offline caching.</div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="card-header">
+                    <h3>Task Automation & File Organizer</h3>
+                    <span class="tag">Automation</span>
+                </div>
+                <div class="card-body">
+                    <div class="subtitle">Daily Workflow Optimizer</div>
+                    <div class="tech">
                         <span>Python</span>
-                        <span>TensorFlow</span>
+                        <span>OS Library</span>
+                        <span>Custom Scripts</span>
                     </div>
-                    <div class="links">
-                        <a href="#">Live Demo</a>
-                        <a href="#">GitHub</a>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop" alt="Project 2">
-                <div class="overlay">
-                    <h3>E-Commerce Platform</h3>
-                    <p>Scalable online store with microservices.</p>
-                    <div class="tags">
-                        <span>Node.js</span>
-                        <span>React</span>
-                        <span>MongoDB</span>
-                    </div>
-                    <div class="links">
-                        <a href="#">Live Demo</a>
-                        <a href="#">GitHub</a>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=500&fit=crop" alt="Project 3">
-                <div class="overlay">
-                    <h3>Design System</h3>
-                    <p>Comprehensive component library with dark/light mode.</p>
-                    <div class="tags">
-                        <span>Figma</span>
-                        <span>CSS</span>
-                        <span>Storybook</span>
-                    </div>
-                    <div class="links">
-                        <a href="#">Live Demo</a>
-                        <a href="#">GitHub</a>
-                    </div>
+                    <div class="desc">Automated file management, secure backup routines, and web scraping pipelines to eliminate repetitive manual tasks.</div>
                 </div>
             </div>
         </div>
@@ -773,35 +773,42 @@ projects_html = """
 st.markdown(projects_html, unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
-# MAGNETIC FOOTER & CONTACT (with Streamlit form for email)
+# CONTACT FOOTER
 # -----------------------------------------------------------------------------
 st.markdown("""
-<section id="footer" class="section-padding">
+<section id="contact" class="section-padding">
     <div class="container">
-        <div class="footer-section">
-            <h2>Let's Connect</h2>
-            <p>Drop your email and I'll reach out within 24 hours.</p>
-""", unsafe_allow_html=True)
-
-# We'll embed a Streamlit form inside the HTML for backend processing.
-with st.form("contact_form", clear_on_submit=True):
-    col1, col2 = st.columns([3, 1])
-    with col1:
-        email = st.text_input("Email", placeholder="you@example.com", label_visibility="collapsed")
-    with col2:
-        submitted = st.form_submit_button("Send →", use_container_width=True)
-    if submitted and email:
-        st.success("Thanks! I'll get back to you soon.")
-
-st.markdown("""
-            <div class="social-icons">
-                <a href="#" aria-label="GitHub">🐙</a>
-                <a href="#" aria-label="LinkedIn">🔗</a>
-                <a href="#" aria-label="Twitter">🐦</a>
-                <a href="#" aria-label="Dribbble">🏀</a>
+        <h2 class="section-title">Let's Connect</h2>
+        <div class="contact-section">
+            <div class="contact-grid">
+                <a href="mailto:brohinajeeb10@gmail.com" class="contact-card">
+                    <div class="icon">✉️</div>
+                    <div class="label">Email</div>
+                    <div class="value">brohinajeeb10@gmail.com</div>
+                </a>
+                <a href="tel:+923471115737" class="contact-card">
+                    <div class="icon">📞</div>
+                    <div class="label">Phone</div>
+                    <div class="value">0347 1115737</div>
+                </a>
+                <a href="https://www.google.com/maps/place/Qasimabad,+Hyderabad" target="_blank" class="contact-card">
+                    <div class="icon">📍</div>
+                    <div class="label">Location</div>
+                    <div class="value">Qasimabad, Hyderabad, Pakistan</div>
+                </a>
+                <a href="https://github.com/mnajeeb-4/" target="_blank" class="contact-card">
+                    <div class="icon">🐙</div>
+                    <div class="label">GitHub</div>
+                    <div class="value">@mnajeeb-4</div>
+                </a>
+                <a href="https://www.linkedin.com/in/najeeb-brohi-07883939b/" target="_blank" class="contact-card">
+                    <div class="icon">🔗</div>
+                    <div class="label">LinkedIn</div>
+                    <div class="value">najeeb-brohi</div>
+                </a>
             </div>
             <div class="footer-bottom">
-                &copy; 2026 Cyber-Luxury Portfolio. Crafted with Streamlit.
+                &copy; 2026 Muhammad Najeeb Brohi. Built with Streamlit & ✦.
             </div>
         </div>
     </div>
@@ -809,7 +816,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
-# SMOOTH SCROLLING JAVASCRIPT
+# SMOOTH SCROLLING JAVASCRIPT (for anchor links)
 # -----------------------------------------------------------------------------
 smooth_js = """
 <script>
@@ -827,5 +834,5 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 st.markdown(smooth_js, unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
-# END
+# END OF SCRIPT
 # -----------------------------------------------------------------------------
