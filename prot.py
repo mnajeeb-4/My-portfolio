@@ -3,7 +3,8 @@ import streamlit as st
 from datetime import datetime
 
 st.set_page_config(
-    page_title="MuhammadNajeeb Brohi | Portfolio",
+    page_title="Muhammad 
+    Najeeb Brohi | Portfolio",
     page_icon="✦",
     layout="wide",
     initial_sidebar_state="collapsed"
