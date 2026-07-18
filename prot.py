@@ -1,23 +1,14 @@
-# portfolio_app.py
-# Ultra-premium, production-ready Streamlit portfolio for Muhammad Najeeb Brohi.
-# Design: Midnight Luxury & Spatial UI with glassmorphism, bento-grid, and premium animations.
 
 import streamlit as st
 from datetime import datetime
 
-# -----------------------------------------------------------------------------
-# PAGE CONFIGURATION
-# -----------------------------------------------------------------------------
 st.set_page_config(
-    page_title="Muhammad Najeeb Brohi | Portfolio",
+    page_title="MuhammadNajeeb Brohi | Portfolio",
     page_icon="✦",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
-# -----------------------------------------------------------------------------
-# CUSTOM CSS – Complete Override
-# -----------------------------------------------------------------------------
 custom_css = """
 /* ----- RESET & FONTS ----- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
